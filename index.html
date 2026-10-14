@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bruno Tiburcio — Projetos em R</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<script>
+(function(){var t;try{t=localStorage.getItem("tema")}catch(e){}
+if(!t)t="light";
+document.documentElement.dataset.theme=t})();
+</script>
+<link rel="stylesheet" href="style.css">
+<style>
+body{transition:background .3s,color .3s;background:var(--bg-grad);background-attachment:fixed;color:var(--ink);font:17px/1.6 "Space Grotesk",system-ui,sans-serif;overflow-x:hidden}
+nav a:hover{color:var(--a)}
+.hero{padding:90px 0 50px;text-align:center}
+h1{font-size:clamp(38px,6.4vw,76px);line-height:1.06;letter-spacing:-.03em;margin:26px auto 0;max-width:18ch;font-weight:700}
+.lead{color:var(--mute);margin:24px auto 0;max-width:54ch;font-size:19px}
+.cta{margin-top:34px}
+.btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:500;background:linear-gradient(90deg,var(--a),var(--b));color:var(--on)}
+h2{font-size:26px;margin:50px 0 22px;display:flex;align-items:baseline;gap:12px}
+h2 small{font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--mute);font-weight:400}
+.grupo{padding-bottom:30px}
+.grupo>p{color:var(--mute);margin:-12px 0 22px;font-size:16px}
+.cards{display:flex;flex-direction:column;gap:14px}
+.card{position:relative;display:flex;align-items:center;gap:24px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 28px;transition:.25s}
+.card:hover{transform:translateY(-3px);border-color:var(--a)}
+.info{flex:1;min-width:0}
+.badge{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:12px;color:var(--a);border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin-bottom:12px}
+.card h3{font-size:22px;margin-bottom:4px}
+.card p{color:var(--mute);font-size:15px}
+.main{position:absolute;inset:0;border-radius:18px;font-size:0}
+.go{font-weight:700;color:var(--a);white-space:nowrap;font-size:16px}
+.repo{position:relative;z-index:1;color:var(--mute);font-size:14px;white-space:nowrap}
+.repo:hover{color:var(--a);text-decoration:underline;text-underline-offset:4px}
+@media(max-width:640px){.card{flex-wrap:wrap}.info{flex-basis:100%}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="logo" href="#"><span>~/</span>bruno.tiburcio</a>
+    <nav>
+      <a href="sobre.html">Sobre mim</a>
+      <a href="https://github.com/brunotiburcio-git" target="_blank" rel="noopener">GitHub</a>
+      <button class="tg" id="tg" aria-label="Alternar tema"></button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="tag">● relatórios e painéis</span>
+    <h1>Análises e painéis <span>prontos para usar.</span></h1>
+    <p class="lead">Análises de dados, modelos preditivos, relatórios e painéis, criados por Bruno Tiburcio. Escolha um projeto e explore.</p>
+  </section>
+
+  <section id="projetos"></section>
+  <footer>© 2026 Bruno Tiburcio</footer>
+</div>
+
+<script>
+// Para adicionar um projeto: inclua um item em "projetos" do grupo desejado.
+// Para criar um grupo: inclua um novo objeto em GRUPOS.
+var GRUPOS = [
+  {
+    titulo: "Orçamento público",
+    descricao: "Análises e painéis sobre planejamento e execução orçamentária.",
+    projetos: [
+      {
+        nome: "Necessidade Orçamentária PAC",
+        descricao: "Modelo preditivo que estima a necessidade orçamentária do PAC para os meses seguintes, com relatório e painel interativo.",
+        tipo: "modelo preditivo",
+        url: "https://brunotiburcio-git.github.io/necessidade-orcamentaria/"
+      }
+    ]
+  }
+];
+
+function el(tag, cls, txt){ var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
+var raiz = document.getElementById("projetos");
+GRUPOS.forEach(function(g){
+  var sec = el("div", "grupo");
+  var h = el("h2", null, g.titulo);
+  h.appendChild(el("small", null, g.projetos.length + (g.projetos.length === 1 ? " projeto" : " projetos")));
+  sec.appendChild(h);
+  if (g.descricao) sec.appendChild(el("p", null, g.descricao));
+  var lista = el("div", "cards");
+  g.projetos.forEach(function(p){
+    var c = el("div", "card"), info = el("div", "info");
+    info.append(el("span", "badge", p.tipo), el("h3", null, p.nome), el("p", null, p.descricao));
+    c.appendChild(info);
+    if (p.repo) { var r = el("a", "repo", "Código"); r.href = p.repo; r.target = "_blank"; r.rel = "noopener"; c.appendChild(r); }
+    var u = el("a", "main", "Abrir projeto"); u.href = p.url; u.target = "_blank"; u.rel = "noopener";
+    var go = el("span", "go", "Abrir projeto →");
+    c.append(go, u); lista.appendChild(c);
+  });
+  sec.appendChild(lista); raiz.appendChild(sec);
+});
+
+var r = document.documentElement, t = document.getElementById("tg");
+function ic(){ t.textContent = r.dataset.theme == "dark" ? "☀" : "☾"; } ic();
+t.onclick = function(){ var n = r.dataset.theme == "dark" ? "light" : "dark"; r.dataset.theme = n; try{ localStorage.setItem("tema", n) }catch(e){} ic(); };
+</script>
+</body>
+</html>
