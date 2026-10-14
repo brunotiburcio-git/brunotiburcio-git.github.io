@@ -1,0 +1,44 @@
+/* ===== Tema e estilos compartilhados (home.html e sobre.html) ===== */
+
+/* MODO ESCURO — preferência pelos tons de verde */
+:root,[data-theme=dark]{
+  --bg:#0a0f0d;      /* fundo: preto esverdeado */
+  --card:#101a16;    /* cards */
+  --ink:#e6f2ec;     /* texto principal */
+  --mute:#8aa398;    /* texto secundário */
+  --a:#6ee7c8;       /* verde-água (destaque) */
+  --b:#a8e063;       /* verde-lima (fim do degradê) */
+  --line:#1f302a;    /* bordas */
+  --bg-grad:linear-gradient(180deg,#000 0%,#030d09 45%,#06190f 100%); /* degradê suave: preto → verde bem escuro */
+  --on:#06100c;      /* texto sobre botões/degradê */
+  --g1:#a8e06326;    /* brilho de fundo 1 */
+  --g2:#6ee7c826;    /* brilho de fundo 2 */
+  --chip:#101a1699;
+}
+
+/* MODO CLARO — tons pastel */
+[data-theme=light]{
+  --bg-grad:var(--bg);
+  --bg:#f6f1e9;--card:#fffaf2;--ink:#1c1a17;--mute:#6f685d;
+  --a:#b4472a;--b:#e0a27a;--line:#d9d0c1;--on:#fff;
+  --g1:#e0a27a40;--g2:#b4472a1f;--chip:#fffaf2cc;
+}
+
+*{box-sizing:border-box;margin:0}
+body::before{content:"";position:fixed;inset:-20%;background:radial-gradient(600px 400px at 20% 10%,var(--g1),transparent 70%),radial-gradient(500px 400px at 85% 30%,var(--g2),transparent 70%);z-index:-1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+header{display:flex;justify-content:space-between;align-items:center;padding:24px 0}
+.logo{font-family:"JetBrains Mono",monospace;font-size:16px}
+.logo span{color:var(--a)}
+nav{display:flex;align-items:center}
+nav a{margin-left:24px;color:var(--mute);font-size:15px}
+.tg{margin-left:24px;background:var(--card);border:1px solid var(--line);color:var(--ink);width:38px;height:38px;border-radius:50%;cursor:pointer;font-size:17px}
+.tg:hover{border-color:var(--a)}
+.tag{display:inline-block;font-family:"JetBrains Mono",monospace;font-size:13px;color:var(--a);border:1px solid var(--line);padding:6px 14px;border-radius:999px;background:var(--chip)}
+h1 span{background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
+.btn:hover{filter:brightness(1.1)}
+footer{border-top:1px solid var(--line);padding:26px 0 44px;color:var(--mute);font-size:14px;text-align:center;font-family:"JetBrains Mono",monospace}
+
+/* Botão de alternar tema: contorno mais evidente no modo escuro */
+[data-theme=dark] .tg{border-color:#5f8f7c}
