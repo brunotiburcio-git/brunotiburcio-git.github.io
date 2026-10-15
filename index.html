@@ -20,8 +20,8 @@ nav a{white-space:nowrap}
 .mono{font-family:"JetBrains Mono",monospace}
 
 /* Abertura */
-.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center;padding:56px 0 64px}
-h1{font-size:clamp(38px,5.6vw,68px);line-height:1.05;letter-spacing:-.03em;margin:22px 0 0;font-weight:700}
+.hero{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center;padding:28px 0 32px}
+h1{font-size:clamp(30px,4.2vw,50px);line-height:1.05;letter-spacing:-.03em;margin:22px 0 0;font-weight:700}
 .lead{color:var(--mute);margin:22px 0 0;max-width:50ch;font-size:19px}
 .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
 .btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:500;background:linear-gradient(90deg,var(--a),var(--b));color:var(--on)}
@@ -71,7 +71,7 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
 .contato h2{font-size:clamp(24px,3vw,30px);margin:0 0 6px}
 .contato p{color:var(--mute)}
 
-@media(max-width:820px){.hero{grid-template-columns:1fr;gap:36px;padding:32px 0 48px}.grade{grid-template-columns:1fr}}
+@media(max-width:820px){.hero{grid-template-columns:1fr;gap:36px;padding:20px 0 28px}.grade{grid-template-columns:1fr}}
 @media(max-width:520px){nav a.on{display:none}nav a{margin-left:16px}.tg{margin-left:16px}.logo{font-size:14px}.card{padding:22px}.contato{padding:26px 22px}}
 </style>
 </head>
@@ -81,22 +81,15 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
     <a class="logo" href="index.html"><span>~/</span>bruno.tiburcio</a>
     <nav>
       <a class="on" href="#portfolio">Projetos</a>
-      <a href="sobre.html">Sobre mim</a>
-      <a href="https://github.com/brunotiburcio-git" target="_blank" rel="noopener">GitHub</a>
-      <button class="tg" id="tg" aria-label="Alternar tema"></button>
+      <a href="sobre.html">Sobre mim</a>      <button class="tg" id="tg" aria-label="Alternar tema"></button>
     </nav>
   </header>
 
   <section class="hero">
     <div>
       <span class="tag">● portfólio de projetos</span>
-      <h1>Dados que viram <span>decisões na gestão pública.</span></h1>
-      <p class="lead">Aqui reúno os projetos que desenvolvo: análises de dados, modelos preditivos, relatórios e painéis interativos. Todos abertos para você explorar.</p>
-      <div class="cta">
-        <a class="btn" href="#portfolio">Explorar projetos ↓</a>
-        <a class="btn s" href="sobre.html">Conheça meu trabalho</a>
-      </div>
-    </div>
+      <h1>Portfólio de projetos <span> para auxiliar decisões na gestão pública.</span></h1>
+      <p class="lead">Trabalhos que desenvolvo: análises de dados, modelos preditivos, relatórios e painéis interativos.</p>    </div>
     <aside class="perfil">
       <div class="topo">
         <img src="assets/foto.jpg" alt="Bruno Tiburcio">
@@ -105,9 +98,8 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
       <div class="nums">
         <div><strong id="n-proj">0</strong><small>projetos</small></div>
         <div><strong id="n-area">0</strong><small id="l-area">áreas</small></div>
-        <div><strong>13+</strong><small>anos em gestão</small></div>
+        <div><strong>20+</strong><small>anos em gestão</small></div>
       </div>
-      <div class="areas" id="tipos"></div>
     </aside>
   </section>
 
@@ -122,16 +114,6 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
     <div class="grade" id="grade"></div>
   </section>
 
-  <section class="contato">
-    <div>
-      <h2>Quer saber mais sobre um projeto?</h2>
-      <p>Veja minha trajetória ou acompanhe o código no GitHub.</p>
-    </div>
-    <div class="cta" style="margin:0">
-      <a class="btn" href="sobre.html">Sobre mim</a>
-      <a class="btn s" href="https://github.com/brunotiburcio-git" target="_blank" rel="noopener">GitHub</a>
-    </div>
-  </section>
   <footer>© 2026 Bruno Tiburcio</footer>
 </div>
 
@@ -156,18 +138,14 @@ var GRUPOS = [
 
 function el(tag, cls, txt){ var e = document.createElement(tag); if (cls) e.className = cls; if (txt) e.textContent = txt; return e; }
 
-var todos = [], tipos = [];
+var todos = [];
 GRUPOS.forEach(function(g){ g.projetos.forEach(function(p){
   todos.push({ p: p, area: g.titulo });
-  if (tipos.indexOf(p.tipo) < 0) tipos.push(p.tipo);
 }); });
 
 document.getElementById("n-proj").textContent = todos.length;
 document.getElementById("n-area").textContent = GRUPOS.length;
 document.getElementById("l-area").textContent = GRUPOS.length === 1 ? "área" : "áreas";
-var bx = document.getElementById("tipos");
-tipos.forEach(function(t){ bx.appendChild(el("span", "mono", t)); });
-
 var grade = document.getElementById("grade");
 function mostra(area){
   grade.textContent = "";
