@@ -8,11 +8,11 @@ set PORTA=8000
 set URL=http://localhost:%PORTA%/
 
 rem 1) Python pelo inicializador "py" (instalacao padrao no Windows)
-py -3 --version >nul 2>&1
+py -c "import sys" >nul 2>&1
 if %errorlevel%==0 (
     echo Servindo %CD% em %URL% com Python ^(py^)
     start "" "%URL%"
-    py -3 -m http.server %PORTA%
+    py -m http.server %PORTA%
     goto :fim
 )
 
