@@ -21,7 +21,6 @@ nav a{white-space:nowrap}
 
 /* Abertura */
 .hero{display:grid;grid-template-columns:1.35fr 1fr;gap:56px;align-items:center;padding:28px 0 32px}
-h1{font-size:clamp(30px,4.2vw,50px);line-height:1.05;letter-spacing:-.03em;margin:22px 0 0;font-weight:700}
 .lead{color:var(--mute);margin:22px 0 0;max-width:50ch;font-size:19px}
 .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
 .btn{display:inline-block;padding:14px 26px;border-radius:12px;font-weight:500;background:linear-gradient(90deg,var(--a),var(--b));color:var(--on)}
@@ -34,10 +33,6 @@ h1{font-size:clamp(30px,4.2vw,50px);line-height:1.05;letter-spacing:-.03em;margi
 .perfil img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:2px solid var(--a)}
 .perfil b{display:block;font-size:19px}
 .perfil .topo span{color:var(--mute);font-size:14px}
-.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:24px}
-.nums div{border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-align:center}
-.nums strong{display:block;font-size:28px;line-height:1.1;background:linear-gradient(90deg,var(--a),var(--b));-webkit-background-clip:text;background-clip:text;color:transparent}
-.nums small{display:block;color:var(--mute);font-size:12px;line-height:1.3;margin-top:4px}
 .areas{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 .areas span{font-size:12px;color:var(--mute);border:1px solid var(--line);border-radius:999px;padding:4px 12px}
 
@@ -88,17 +83,11 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
   <section class="hero">
     <div>
       <span class="tag">● portfólio de projetos</span>
-      <h1>Portfólio de projetos <span> para auxiliar decisões na gestão pública.</span></h1>
       <p class="lead">Trabalhos que desenvolvo: análises de dados, modelos preditivos, relatórios e painéis interativos.</p>    </div>
     <aside class="perfil">
       <div class="topo">
         <img src="assets/foto.jpg" alt="Bruno Tiburcio">
         <div><b>Bruno Tiburcio</b><span>Economista · Ministério das Cidades</span></div>
-      </div>
-      <div class="nums">
-        <div><strong id="n-proj">0</strong><small>projetos</small></div>
-        <div><strong id="n-area">0</strong><small id="l-area">áreas</small></div>
-        <div><strong>20+</strong><small>anos em gestão</small></div>
       </div>
     </aside>
   </section>
@@ -156,9 +145,6 @@ GRUPOS.forEach(function(g){ g.projetos.forEach(function(p){
   todos.push({ p: p, area: g.titulo });
 }); });
 
-document.getElementById("n-proj").textContent = todos.length;
-document.getElementById("n-area").textContent = GRUPOS.length;
-document.getElementById("l-area").textContent = GRUPOS.length === 1 ? "área" : "áreas";
 var grade = document.getElementById("grade");
 function mostra(area){
   grade.textContent = "";
