@@ -55,8 +55,6 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
 .pe{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
 .main{position:absolute;inset:0;border-radius:20px;font-size:0}
 .go{font-weight:700;color:var(--a);white-space:nowrap;font-size:16px}
-.repo{position:relative;z-index:1;color:var(--mute);font-size:14px}
-.repo:hover{color:var(--a);text-decoration:underline;text-underline-offset:4px}
 .card.vazio{border-style:dashed;background:transparent;justify-content:center;align-items:center;text-align:center;color:var(--mute)}
 .card.vazio:hover{transform:none;border-color:var(--line)}
 .card.vazio b{display:block;color:var(--ink);font-size:19px;margin-bottom:6px}
@@ -109,7 +107,7 @@ h2{font-size:clamp(28px,3.4vw,38px);letter-spacing:-.02em;line-height:1.15;margi
 <script>
 // Para adicionar um projeto: inclua um item em "projetos" do grupo desejado.
 // Para criar um grupo (área): inclua um novo objeto em GRUPOS. Ele vira um filtro automaticamente.
-// Campos do projeto: nome, descricao, tipo, url e, opcionalmente, repo (link do código).
+// Campos do projeto: nome, descricao, tipo e url.
 var GRUPOS = [
   {
     titulo: "Orçamento público",
@@ -131,8 +129,19 @@ var GRUPOS = [
         nome: "Carteira de Investimento Integrada - SACI",
         descricao: "Painel interativo da carteira do MCID no padrão do SACI: totalizadores OGU/FIN, filtros, gráficos por situação, UF e região, e tabela de contratos com exportação.",
         tipo: "painel interativo",
-        url: "https://connect.posit.cloud/brunotiburcio/content/01a14529-004c-3a4d-bcab-bd1566e50107",
-        repo: "https://github.com/brunotiburcio-git/painel-carteira-saci"
+        url: "https://connect.posit.cloud/brunotiburcio/content/01a14529-004c-3a4d-bcab-bd1566e50107"
+      }
+    ]
+  },
+  {
+    titulo: "Transição Governamental",
+    descricao: "Sistemas de apoio à Transição Governamental 2026 do Ministério das Cidades.",
+    projetos: [
+      {
+        nome: "Transição Governamental 2026",
+        descricao: "Coleta de informações para a transição governamental do Ministério das Cidades.",
+        tipo: "sistema",
+        url: "https://tiburciobruno.com.br/transicao-governamental-2026/"
       }
     ]
   }
@@ -155,7 +164,6 @@ function mostra(area){
     c.append(meta, el("h3", null, p.nome), el("p", null, p.descricao));
     var pe = el("div", "pe");
     pe.appendChild(el("span", "go", "Abrir projeto →"));
-    if (p.repo) { var r = el("a", "repo", "Código"); r.href = p.repo; r.target = "_blank"; r.rel = "noopener"; pe.appendChild(r); }
     var u = el("a", "main", "Abrir projeto " + p.nome); u.href = p.url; u.target = "_blank"; u.rel = "noopener";
     c.append(pe, u); grade.appendChild(c);
   });
